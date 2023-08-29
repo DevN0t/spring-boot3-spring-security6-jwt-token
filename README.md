@@ -60,7 +60,7 @@ Follow these steps to set up and run the project on your local machine:
 
 - `POST /user/register`: Register a new user.
 - `POST /user/login`: Obtain a JWT by logging in.
-- `GET /user/login`: Get all registred users(Admin Role needed).
+- `GET /user/get`: Get all registred users(Admin Role needed).
 - More endpoints for specific resources can be added as per your application's requirements.
 
 ## Contributing
