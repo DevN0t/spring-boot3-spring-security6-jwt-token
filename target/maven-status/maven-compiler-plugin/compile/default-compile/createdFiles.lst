@@ -1,0 +1,14 @@
+com\example\springjwtauth\entrypoint\controllers\UserController.class
+com\example\springjwtauth\AgapesistemasApplication.class
+com\example\springjwtauth\infra\security\SecurityFilter.class
+com\example\springjwtauth\services\restservices\UserService.class
+com\example\springjwtauth\infra\security\cors\CorsConfig.class
+com\example\springjwtauth\infra\security\SecutiryConfigurations.class
+com\example\springjwtauth\entrypoint\dto\LoginResponseDTO.class
+com\example\springjwtauth\entrypoint\dto\LoginDTO.class
+com\example\springjwtauth\repositories\UserRepository.class
+com\example\springjwtauth\domain\entity\user\role\RoleEnum.class
+com\example\springjwtauth\domain\entity\user\User.class
+com\example\springjwtauth\infra\security\TokenService.class
+com\example\springjwtauth\entrypoint\dto\UserDTO.class
+com\example\springjwtauth\services\authorization\AuthorizationService.class
