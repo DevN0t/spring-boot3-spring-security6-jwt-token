@@ -1,6 +1,7 @@
 package com.example.springjwtauth.services.authorization;
 
 import com.example.springjwtauth.domain.entity.user.User;
+import com.example.springjwtauth.domain.entity.user.role.RoleEnum;
 import com.example.springjwtauth.entrypoint.dto.LoginDTO;
 import com.example.springjwtauth.entrypoint.dto.LoginResponseDTO;
 import com.example.springjwtauth.entrypoint.dto.UserDTO;
@@ -39,7 +40,7 @@ public class AuthorizationService implements UserDetailsService{
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         return userRepository.findByLogin(login);
     }
-    public ResponseEntity loginUser(@RequestBody @Valid LoginDTO data){
+    public ResponseEntity<LoginResponseDTO> loginUser(@RequestBody @Valid LoginDTO data){
         AuthenticationManager authenticationManager = context.getBean(AuthenticationManager.class);
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = authenticationManager.authenticate(usernamePassword);
@@ -47,10 +48,15 @@ public class AuthorizationService implements UserDetailsService{
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
     public ResponseEntity<User> registerUser(@RequestBody @Valid UserDTO data){
+            if (!data.password().equals(data.confirmPassword())) {
+            return ResponseEntity.badRequest().build();}
         if(this.userRepository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
-
         String encriptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User newUser = new User(data.login(), encriptedPassword, data.role());
+        User newUser = new User();
+        newUser.setName(data.name());
+        newUser.setLogin(data.login());
+        newUser.setPassword(encriptedPassword);
+        newUser.setRole(RoleEnum.USER);
         this.userRepository.save(newUser);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

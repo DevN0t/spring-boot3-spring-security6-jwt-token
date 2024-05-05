@@ -3,6 +3,7 @@ package com.example.springjwtauth.entrypoint.controllers;
 
 import com.example.springjwtauth.domain.entity.user.User;
 import com.example.springjwtauth.entrypoint.dto.LoginDTO;
+import com.example.springjwtauth.entrypoint.dto.LoginResponseDTO;
 import com.example.springjwtauth.entrypoint.dto.UserDTO;
 import com.example.springjwtauth.services.authorization.AuthorizationService;
 import com.example.springjwtauth.services.restservices.UserService;
@@ -13,8 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("user")
-@CrossOrigin(origins = "*")
+@RequestMapping()
 public class UserController {
 
     private final UserService userService;
@@ -35,7 +35,7 @@ public class UserController {
         return authorizationService.registerUser(userDTO);
     }
     @PostMapping("/login")
-    public ResponseEntity<User> logUser(@RequestBody @Valid LoginDTO loginDTO){
+    public ResponseEntity<LoginResponseDTO> logUser(@RequestBody @Valid LoginDTO loginDTO){
         return authorizationService.loginUser(loginDTO);
     }
 }
