@@ -5,6 +5,7 @@ import com.example.springjwtauth.domain.entity.user.User;
 import com.example.springjwtauth.entrypoint.dto.LoginDTO;
 import com.example.springjwtauth.entrypoint.dto.LoginResponseDTO;
 import com.example.springjwtauth.entrypoint.dto.UserDTO;
+import com.example.springjwtauth.entrypoint.dto.UserListDTO;
 import com.example.springjwtauth.services.authorization.AuthorizationService;
 import com.example.springjwtauth.services.restservices.UserService;
 import jakarta.validation.Valid;
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/get")
-    public List<User> getAllUsers(){
+    public List<UserListDTO> getAllUsers(){
         return userService.getAllUsers();
     }
 
